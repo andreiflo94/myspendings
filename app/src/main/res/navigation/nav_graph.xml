@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/monthlySpendingsFragment">
+
+    <fragment
+        android:id="@+id/monthlySpendingsFragment"
+        android:name="com.heixss.myspendings.ui.MonthlySpendingsFragment"
+        android:label="fragment_monthly_spendings"
+        tools:layout="@layout/fragment_monthly_spendings" >
+        <action
+            android:id="@+id/action_monthlySpendingsFragment_to_addSpendingFragment"
+            app:destination="@id/addSpendingFragment" />
+        <action
+            android:id="@+id/action_monthlySpendingsFragment_to_spendingListFragment"
+            app:destination="@id/spendingListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSpendingFragment"
+        android:name="com.heixss.myspendings.ui.AddSpendingFragment"
+        android:label="fragment_add_spending"
+        tools:layout="@layout/fragment_add_spending" />
+    <fragment
+        android:id="@+id/spendingListFragment"
+        android:name="com.heixss.myspendings.ui.SpendingsByCategoryFragment"
+        android:label="fragment_spending_list"
+        tools:layout="@layout/fragment_spending_list" >
+        <argument
+            android:name="month"
+            app:argType="integer" />
+        <argument
+            android:name="year"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_spendingListFragment_to_detailedSpendingsFragment"
+            app:destination="@id/detailedSpendingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedSpendingsFragment"
+        android:name="com.heixss.myspendings.ui.DetailedSpendingsFragment"
+        android:label="DetailedSpendingsFragment" >
+        <argument
+            android:name="month"
+            app:argType="integer" />
+        <argument
+            android:name="year"
+            app:argType="integer" />
+        <argument
+            android:name="categoryId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_detailedSpendingsFragment_to_addSubSpendingFragment"
+            app:destination="@id/addSubSpendingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSubSpendingFragment"
+        android:name="com.heixss.myspendings.ui.AddSubSpendingFragment"
+        android:label="fragment_add_sub_spending"
+        tools:layout="@layout/fragment_add_sub_spending" >
+        <argument
+            android:name="categoryId"
+            app:argType="long" />
+    </fragment>
+</navigation>
