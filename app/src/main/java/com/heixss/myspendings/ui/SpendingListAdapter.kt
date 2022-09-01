@@ -36,7 +36,7 @@ class SpendingListAdapter internal constructor(
         holder.tvCategory.text = spending.category.name
         holder.tvValue.text = spending.spending.value.toString()
         holder.tvDate.text =
-            spending.spending.day.toString() + "/" + spending.spending.month + "/" + spending.spending.year
+            "${spending.spending.day}/${spending.spending.month + 1}/${spending.spending.year}"
         holder.tvDesc.text = spending.spending.description
         holder.bind(spending)
     }

@@ -12,7 +12,6 @@ import com.heixss.myspendings.R
 import com.heixss.myspendings.viewmodel.MonthlySpendingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_monthly_spendings.*
-import java.util.*
 
 @AndroidEntryPoint
 class MonthlySpendingsFragment : Fragment(),
@@ -43,7 +42,7 @@ class MonthlySpendingsFragment : Fragment(),
         viewModel.liveSpendings.observe(viewLifecycleOwner, Observer { spendings ->
             val monthYear = ArrayList<String>()
             spendings.forEach {
-                monthYear.add(it.month.toString() + "/" + it.year)
+                monthYear.add((it.month + 1).toString() + "/" + it.year)
             }
             val distinctMonthYear = monthYear.distinct()
             adapter.setItems(distinctMonthYear)
@@ -57,7 +56,7 @@ class MonthlySpendingsFragment : Fragment(),
         val year = monthYear.subSequence(2, monthYear.length)
         findNavController().navigate(
             MonthlySpendingsFragmentDirections.actionMonthlySpendingsFragmentToSpendingListFragment(
-                month.toString().toInt(),
+                month.toString().toInt() - 1,
                 year.toString().toInt()
             )
         )
